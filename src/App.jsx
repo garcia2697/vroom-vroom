@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Header from "./components/header/Header";
 import Nav from "./components/Nav/Nav";
 // import Cats from './components/Cats'
-import Login from './components/login/Login';
-// import Signup from './components/login/server'
+import LoginForm from "./client/components/login/client/src/LoginForm";
+import SignupForm from "./client/components/login/client/src/SignupForm";
 import Cats from "./components/gatos/gatos";
 import Dogs from "./components/perros/Perros";
 import Gallery from "./components/Gallery";
@@ -11,8 +11,8 @@ import axios from "./components/login/api/axios";
 
 const App = () => {
   const [pages] = useState([
-    {name: 'Log in', description:<Login></Login>},
-    // {name: 'Signup', description:<Signup></Signup>},
+    {name: 'Log in', description:<LoginForm></LoginForm>},
+    {name: 'Signup', description:<SignupForm></SignupForm>},
     { name: "Back to the top", description: <Header></Header> },
     { name: "FaDog", description: <Dogs></Dogs> },
     { name: "Cats", description: <Cats></Cats> },
@@ -53,6 +53,23 @@ const App = () => {
         ></Nav>
 
         <main>
+          <button
+            onClick={() => {
+              setCurrentPage(pages[1]);
+            }}
+          >
+            {" "}
+            Dog Link{" "}
+          </button>
+
+          <button
+            onClick={() => {
+              setCurrentPage(pages[2]);
+            }}
+          >
+            {" "}
+            Cat Link{" "}
+          </button>
 
           <>
             <Gallery currentPage={currentPage}></Gallery>
