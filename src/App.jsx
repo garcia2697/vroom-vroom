@@ -8,6 +8,8 @@ import Cats from "./components/gatos/gatos";
 import Dogs from "./components/perros/Perros";
 import Gallery from "./components/Gallery";
 import axios from "./components/login/api/axios";
+import { setContext } from '@apollo/client/link/context';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import { 
   ApolloClient,
@@ -32,6 +34,16 @@ const link = from([
   errorLink,
   new HttpLink({ uri: "http://localhost:3000/graphql" }),
 ]);
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
@@ -73,42 +85,11 @@ const App = () => {
 
   return (
     <>
-      <div>
-        {/* <Header/> */}
-        <Nav
-          pages={pages}
-          setCurrentPage={setCurrentPage}
-          currentPage={currentPage}
-          
-        ></Nav>
-
-        <main>
-          <button
-            onClick={() => {
-              setCurrentPage(pages[1]);
-            }}
-          >
-            {" "}
-            Dog Link{" "}
-          </button>
-
-          <button
-            onClick={() => {
-              setCurrentPage(pages[2]);
-            }}
-          >
-            {" "}
-            Cat Link{" "}
-          </button>
-
-          <>
-            <Gallery currentPage={currentPage}></Gallery>
-          </>
-        </main>
-        {/* <Nav/> */}
-      </div>
-
-      {/* <Login/> */}
+      <ApolloProvider client={client}>
+        <Router>
+          <Route path='/dogs' element={<Dogs/>}/>
+        </Router>
+      </ApolloProvider>
     </>
   );
 };
