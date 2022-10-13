@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Header from "./components/header/Header";
 import Nav from "./components/Nav/Nav";
 // import Cats from './components/Cats'
-// import LoginForm from "./client/components/login/client/src/LoginForm";
-// // // import SignupForm from "./client/components/login/client/src/SignupForm";
+ import LoginForm from "./components/login/LoginForm";
+import SignupForm from "./components/login/SignupForm";
 import Cats from "./components/gatos/gatos";
 import Dogs from "./components/perros/Perros";
 import Gallery from "./components/Gallery";
@@ -87,7 +87,48 @@ const App = () => {
     <>
       <ApolloProvider client={client}>
         <Router>
-          <Route path='/dogs' element={<Dogs/>}/>
+        <div>
+        <Header>
+          <Nav
+            pages={pages}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+        > </Nav>
+        <Routes>
+          <Route 
+          path='/login'
+          element={<LoginForm />}
+          />
+          <Route
+          path='/signup'
+          element={<SignupForm />}
+          />
+        </Routes>
+
+        </Header>
+        <main>
+          <button
+            onClick={() => {
+              setCurrentPage(pages[1]);
+            }}
+          >
+            {" "}
+            Dog Link{" "}
+          </button>
+          <button
+            onClick={() => {
+              setCurrentPage(pages[2]);
+            }}
+          >
+            {" "}
+            Cat Link{" "}
+          </button>
+          <>
+            <Gallery currentPage={currentPage}></Gallery>
+          </>
+        </main>
+        {/* <Nav/> */}
+      </div>
         </Router>
       </ApolloProvider>
     </>
