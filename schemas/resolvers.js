@@ -3,12 +3,12 @@ const { User, Cat, Dog } = require('../models');
 const resolvers = {
     Query: {
         cats: async () => {
-            return Cat.find()
+            return await Cat.find()
         }
     },
     Query: {
       dogs: async () => {
-        return Dog.find()
+        return await Dog.find()
       }
     }
 };

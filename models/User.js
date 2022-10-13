@@ -21,20 +21,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
       minlength: 5
-    },
-
-    dogs: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Dog'
-        }
-    ],
-    cats: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Cat'
-        }
-    ]
+    }
   },
   {
     toJSON: {
