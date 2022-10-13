@@ -5,7 +5,7 @@ import Nav from "./components/Nav/Nav";
 import Login from './components/login/Login';
 // import Signup from './components/login/server'
 import Cats from "./components/gatos/gatos";
-import Dogs from "./components/perros/Perros";
+import Dogs from "./components/perros/perros";
 import Gallery from "./components/Gallery";
 import axios from "./components/login/api/axios";
 import Form from "./components/form/form";
