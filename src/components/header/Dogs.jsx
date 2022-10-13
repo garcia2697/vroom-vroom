@@ -1,8 +1,6 @@
 import React from 'react'
 import './dogs.css'
-import Perros from '../perros/perros'
-import {useState} from 'react';
-import Gallery from '../Gallery';
+
 
 
 const data = [
@@ -30,7 +28,7 @@ const Dogs = () => {
             return (
               <article key={id} className='dogs-item'>
           <div className='dogs-item-image'></div>
-          <a href={Perros}>  <img src={image} alt=""/>   </a>
+          <a href={id}>  <img src={image} alt=""/>   </a>
           <h3>{title}</h3>
 
         </article>

@@ -1,15 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from '../../App';
-import { AuthProvider } from './context/AuthProvider';
+import React from "react";
+import ReactDOM from "react-dom";
+import LoginForm from "../../src/LoginForm";
 
-
-ReactDOM.render(
-  <React.StrictMode>
-    <AuthProvider>
-      <App />
-    </AuthProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+ReactDOM.render(<LoginForm />, document.getElementById("root"));
