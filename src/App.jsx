@@ -22,25 +22,25 @@ const App = () => {
 
   const [currentPage, setCurrentPage] = useState(pages[0]);
   
-  const getDogData = () => {
-    axios.get('/api/dogs')
-    .then(() => {
-      console.log('Dog data has been received!');
-    })
-    .catch(() => {
-      alert('Error retreiving dog data!')
-    });
-  };
+  // const getDogData = () => {
+  //   axios.get('/api/dogs')
+  //   .then(() => {
+  //     console.log('Dog data has been received!');
+  //   })
+  //   .catch(() => {
+  //     alert('Error retreiving dog data!')
+  //   });
+  // };
 
-  const getCatData = () => {
-    axios.get('/api/cats')
-    .then(() => {
-      console.log('Cat data has been received!');
-    })
-    .catch(() => {
-      alert('Error retreiving cat data!')
-    });
-  };
+  // const getCatData = () => {
+  //   axios.get('/api/cats')
+  //   .then(() => {
+  //     console.log('Cat data has been received!');
+  //   })
+  //   .catch(() => {
+  //     alert('Error retreiving cat data!')
+  //   });
+  // };
 
 
   return (
