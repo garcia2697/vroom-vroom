@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import Header from "./components/header/Header";
 import Nav from "./components/Nav/Nav";
-// import Cats from './components/Cats'
+//import Cats from './components/Cats'
 // import LoginForm from "./client/components/login/client/src/LoginForm";
 // // // import SignupForm from "./client/components/login/client/src/SignupForm";
 import Cats from "./components/gatos/gatos";
 import Dogs from "./components/perros/Perros";
 import Gallery from "./components/Gallery";
 import axios from "./components/login/api/axios";
+//import auth from "../src/components/login/utils/auth";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 
 import { 
   ApolloClient,
@@ -16,6 +19,7 @@ import {
   HttpLink,
   from,
 } from "@apollo/client";
+import { setContext } from '@apollo/client/link/context';
 import {onError} from '@apollo/client/link/error'
 
 
@@ -48,6 +52,28 @@ const App = () => {
     { name: "Cats", description: <Cats></Cats> },
   ]);
 
+  // const [isAuthenticated , setIsAuthenticated] = useState(false);
+  // const authStatus = localstorage.getItem('auth')
+
+  // const setAuth = (value) => {
+  //   setIsAuthenticated(authService) 
+  // };
+
+  // UseEffect(() =>{
+  //   setIsAuthenticated(authService)
+  // }, [])
+
+  const authLink = setContext((_, { headers }) => {
+    const token = localStorage.getItem('id_token');
+    return {
+      headers: {
+        ...headers,
+        authorization: token ? `Bearer ${token}` : '',
+      },
+    };
+  });
+
+
   const [currentPage, setCurrentPage] = useState(pages[0]);
   
   const getDogData = () => {
@@ -73,42 +99,15 @@ const App = () => {
 
   return (
     <>
-      <div>
-        {/* <Header/> */}
-        <Nav
-          pages={pages}
-          setCurrentPage={setCurrentPage}
-          currentPage={currentPage}
-          
-        ></Nav>
+    <ApolloProvider client={client}>
+      <Router>
+        < Route path='/dogs' element={<Dogs/>}/>
+      
 
-        <main>
-          <button
-            onClick={() => {
-              setCurrentPage(pages[1]);
-            }}
-          >
-            {" "}
-            Dog Link{" "}
-          </button>
-
-          <button
-            onClick={() => {
-              setCurrentPage(pages[2]);
-            }}
-          >
-            {" "}
-            Cat Link{" "}
-          </button>
-
-          <>
-            <Gallery currentPage={currentPage}></Gallery>
-          </>
-        </main>
-        {/* <Nav/> */}
-      </div>
-
-      {/* <Login/> */}
+      
+      </Router>
+      </ApolloProvider>
+      
     </>
   );
 };
