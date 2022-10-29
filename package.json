@@ -30,7 +30,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "concurrently \"react-scripts start\" \"node server.js",
     "develop": "concurrently \"npm run watch\" \" npm start\"",
     "seed": "npm run seed"
   },
