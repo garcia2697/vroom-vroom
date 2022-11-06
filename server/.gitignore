@@ -29,4 +29,3 @@ yarn-error.log*
 # Docker
 Dockerfile
 docker-compose.yml
-node_modules
